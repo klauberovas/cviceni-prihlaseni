@@ -147,3 +147,7 @@ h2 {
   color: red;
   padding: 0.5rem;
 }
+
+.input--red {
+  background-color: #ff3030;
+}

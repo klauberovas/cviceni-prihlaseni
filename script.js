@@ -5,10 +5,20 @@ const user = {
 };
 const formElm = document.querySelector('form');
 const buttonElm = document.querySelector('button');
-const nameElm = document.getElementById('name');
-const passwordElm = document.getElementById('password');
+let nameElm = document.getElementById('name');
+let passwordElm = document.getElementById('password');
 let emailElm = document.getElementById('email');
 const messageElm = document.querySelector('.message');
+
+const checkInput = (event) => {
+  if (nameElm.value === '' || !emailElm.value.includes('@')) {
+    return event.target.classList.add('input--red');
+  }
+  return event.target.classList.remove('input--red');
+};
+
+nameElm.addEventListener('input', checkInput);
+emailElm.addEventListener('input', checkInput);
 
 buttonElm.addEventListener('click', (e) => {
   e.preventDefault();
@@ -19,6 +29,10 @@ buttonElm.addEventListener('click', (e) => {
     user.email !== emailElm.value &&
     user.password !== passwordElm.value
   ) {
-    return (messageElm.innerHTML = '<h2>Neplatné přihlašovací údaje</h>');
+    return (
+      (messageElm.innerHTML = '<h2>Neplatné přihlašovací údaje</h>'),
+      (nameElm.value = ''),
+      (passwordElm.value = '')
+    );
   }
 });
